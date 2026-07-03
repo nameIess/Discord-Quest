@@ -1,0 +1,44 @@
+name: Update Quest Script from Gist
+
+on:
+  schedule:
+    # Every Monday at midnight UTC
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download gist markdown
+        run: |
+          curl -fsSL \
+            "https://gist.githubusercontent.com/aamiaa/204cd9d42013ded9faf646fae7f89fbb/raw" \
+            -o gist.md
+
+      - name: Extract JavaScript code block
+        run: |
+          sed -n '/^```js$/,/^```$/{/^```/d;p}' gist.md > quest-script.js
+          rm gist.md
+          echo "--- Extracted $(wc -l < quest-script.js) lines ---"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "nameIess"
+          git config user.email "145839706+nameIess@users.noreply.github.com"
+
+          if git diff --quiet quest-script.js 2>/dev/null; then
+            echo "No changes detected — skipping commit."
+          else
+            git add quest-script.js
+            git commit -m "chore: auto-update quest script from gist"
+            git push
+            echo "Committed and pushed updated quest-script.js"
+          fi
