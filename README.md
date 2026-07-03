@@ -8,19 +8,17 @@ Automatically synced mirror of [aamiaa's Discord Quest completion script](https:
 ## Quick Use
 
 > [!NOTE]
-> Discord's CSP blocks `fetch()` to external URLs, so you **cannot** use a one-liner fetch/eval inside the console. Copy-paste the script instead.
+> Discord's CSP blocks `fetch()` to external URLs, but you can bypass it by injecting a `<script>` tag.
 
-**Option 1 — curl then paste:**
+**Paste this one-liner into the Discord DevTools console** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> → **Console**):
 
-```bash
-curl -sL https://raw.githubusercontent.com/nameIess/Discord-Quest/main/quest-script.js | clip
+```js
+var s=document.createElement('script');s.src='https://raw.githubusercontent.com/nameIess/Discord-Quest/main/quest-script.js';document.head.appendChild(s);
 ```
 
-This copies the script to your clipboard. Then open Discord DevTools (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> → **Console**) and paste it.
+**Alternative — copy from browser:**
 
-**Option 2 — open the raw link directly:**
-
-Visit the [raw script URL](https://raw.githubusercontent.com/nameIess/Discord-Quest/main/quest-script.js) in your browser, select all, copy, and paste into the Discord console.
+Open the [raw script](https://raw.githubusercontent.com/nameIess/Discord-Quest/main/quest-script.js) in a new browser tab, <kbd>Ctrl</kbd>+<kbd>A</kbd> → <kbd>Ctrl</kbd>+<kbd>C</kbd>, then paste into Discord console.
 
 ## How It Works
 
