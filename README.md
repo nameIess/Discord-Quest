@@ -7,18 +7,25 @@ Automatically synced mirror of [aamiaa's Discord Quest completion script](https:
 
 ## Quick Use
 
-> [!NOTE]
-> Discord's CSP blocks `fetch()` to external URLs, but you can bypass it by injecting a `<script>` tag.
+> [!IMPORTANT]
+> Discord's CSP blocks loading external scripts inside the console. You must copy the script first, then paste it.
 
-**Paste this one-liner into the Discord DevTools console** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> → **Console**):
+**Option 1 — PowerShell (copies to clipboard automatically):**
 
-```js
-var s=document.createElement('script');s.src='https://raw.githubusercontent.com/nameIess/Discord-Quest/main/quest-script.js';document.head.appendChild(s);
+```powershell
+curl.exe -sL https://raw.githubusercontent.com/nameIess/Discord-Quest/main/quest-script.js | clip
 ```
 
-**Alternative — copy from browser:**
+Then open Discord DevTools (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> → **Console**), <kbd>Ctrl</kbd>+<kbd>V</kbd>, and hit <kbd>Enter</kbd>.
 
-Open the [raw script](https://raw.githubusercontent.com/nameIess/Discord-Quest/main/quest-script.js) in a new browser tab, <kbd>Ctrl</kbd>+<kbd>A</kbd> → <kbd>Ctrl</kbd>+<kbd>C</kbd>, then paste into Discord console.
+> **Note:** Use `curl.exe` (not `curl`) — Windows PowerShell aliases `curl` to a different command.
+
+**Option 2 — Browser (no terminal needed):**
+
+1. Open [**quest-script.js**](https://raw.githubusercontent.com/nameIess/Discord-Quest/main/quest-script.js) in your browser
+2. <kbd>Ctrl</kbd>+<kbd>A</kbd> → <kbd>Ctrl</kbd>+<kbd>C</kbd> to copy all
+3. Open Discord DevTools (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> → **Console**)
+4. <kbd>Ctrl</kbd>+<kbd>V</kbd> → <kbd>Enter</kbd>
 
 ## How It Works
 
