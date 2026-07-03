@@ -31,13 +31,14 @@ jobs:
 
       - name: Commit and push if changed
         run: |
-          git config user.name "nameIess"
-          git config user.email "145839706+nameIess@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet quest-script.js 2>/dev/null; then
+          git add quest-script.js
+
+          if git diff --cached --quiet; then
             echo "No changes detected — skipping commit."
           else
-            git add quest-script.js
             git commit -m "chore: auto-update quest script from gist"
             git push
             echo "Committed and pushed updated quest-script.js"
