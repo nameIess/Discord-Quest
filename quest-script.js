@@ -26,7 +26,7 @@ if(quests.length === 0) {
 		const taskConfig = quest.config.taskConfig ?? quest.config.taskConfigV2
 		const taskName = supportedTasks.find(x => taskConfig.tasks[x] != null)
 		const taskData = taskConfig.tasks[taskName]
-		const applicationId = quest.config.application?.id ?? taskData.applications[0].id
+		const applicationId = quest.config.application?.id ?? taskData.applications?.[0]?.id
 		const secondsNeeded = taskData.target
 		let secondsDone = quest.userStatus?.progress?.[taskName]?.value ?? 0
 
